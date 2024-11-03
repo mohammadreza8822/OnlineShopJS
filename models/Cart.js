@@ -1,6 +1,8 @@
-class Cart {
+import Display from "./Display.js";
+
+class Cart extends Display {
   constructor(parent, price) {
-    this.parent = parent;
+    super(parent);
     this.price = price;
     this.products = [];
     this.toShow = [];
@@ -14,7 +16,7 @@ class Cart {
       const qty = this.products.filter((p) => p.id === product.id).length;
       this.createCard(product, qty);
     });
-    console.log(this.toShow);
+    this.calculateTotalPrice();
   }
 
   createCard(data, qty) {
@@ -98,6 +100,11 @@ class Cart {
     const newProducts = this.products.filter((p) => p.id !== +id);
     this.products = newProducts;
     this.showProducts();
+  }
+
+  calculateTotalPrice() {
+    const total = this.products.reduce((acc, cur) => (acc += cur.price), 0);
+    this.price.innerText = total;
   }
 }
 

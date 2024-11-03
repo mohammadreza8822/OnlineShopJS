@@ -1,9 +1,9 @@
-class Products {
+import Display from "./Display.js";
+
+class Products extends Display {
   constructor(parent, products, cart) {
-    this.parent = parent;
-    this.products = products;
+    super(parent, products);
     this.cart = cart;
-    this.parent.addEventListener("click", this);
   }
 
   showProducts() {
